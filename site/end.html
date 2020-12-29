@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest!</title>
+    <style>
+        body{
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        #resp{
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            overflow:hidden;
+            justify-content: center;
+            align-items: center;
+        }
+        #score{
+            position: absolute;
+            bottom: 0;
+        }
+        div p{
+            color: white;
+            font-weight: bold;
+            font-size: xx-large;
+        }
+        .correct{
+            background: rgb(158, 223, 85);
+        }
+        .incorrect{
+            background: rgb(204, 60, 60);
+        }
+        .exact{
+            background : rgb(59, 167, 59);
+        }
+        .ecoule{
+            background: rgb(160, 156, 156);
+        }
+    </style>
+</head>
+<body>
+    <?answertype>
+    <div id="score"><p>Votre score : <?score></p></div>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            setInterval(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/apps/einfos",
+                    success: function (obj) {
+                        obj = JSON.parse(obj);
+                        acdec = {
+                            "incorrect": 0,
+                            "ecoule": -1,
+                            "correct": 1,
+                            "exact": 2
+                        }[$("#resp").get()[0].className]
+                        if (obj.decision != acdec){
+                            location.reload();
+                        }
+
+                        if (obj.status == 1){
+                            location.href = "/play";
+                        } else if (obj.status == 3){
+                            location.href = "eog";
+                        }
+                    }
+                });
+            },1000);
+        });
+    </script>
+</div>
+</body>
+</html>

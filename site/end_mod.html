@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest moderation</title>
+    <style>
+        body{
+            background: rgb(77, 255, 181);
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+            font-family: Helvetica, Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        td{
+            padding: 3px;
+            box-shadow: grey 4px 4px 2px;
+            background: white;
+        }
+        table{
+            border-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        .header{
+            font-weight: bold;
+            font-size: large;
+        }
+        .lastcol{
+            display: flex;
+            flex-direction: column;
+        }
+        hr{
+            width: 100%;
+        }
+        button{
+            height: 4em;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+        button:active{
+            background: purple;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr class="header">
+            <td>Nom</td>
+            <td>Réponse</td>
+            <td>Décision</td>
+        </tr>
+        <?tablecontent>
+    </table>
+    <button id="showansw">Afficher la réponse</button>
+    <button id="suite">Passer à la suite</button>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("input[type='radio']").change(function(e){
+                var newdec = e.currentTarget.value == "V" ? 1 : 0;
+                $.ajax({
+                    method: "POST",
+                    url: "/apps/mactions",
+                    data: {
+                        changedecision: JSON.stringify({
+                            name: e.currentTarget.name.replace(/_decision/g,""),
+                            new: newdec
+                        })
+                    }
+                });
+            });
+            $("#showansw").click(function(e){
+                $.ajax({
+                    method: "POST",
+                    url: "/apps/mactions",
+                    data: {
+                        setvar: JSON.stringify({
+                            show_answer: 1
+                        })
+                    }
+                });
+                e.currentTarget.readOnly = true;
+
+            });
+            $("#suite").click(function(){
+                $.ajax({
+                    method: "POST",
+                    url: "/apps/mactions",
+                    data: {
+                        setvar: JSON.stringify({
+                            status: 1,
+                            answcounter: []
+                        }),
+                        increm: JSON.stringify({
+                            currentquestion: 1
+                        })
+                    },
+                    success: function(){
+                        location.href = "/play";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

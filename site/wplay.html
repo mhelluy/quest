@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attente</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow:hidden;
+            background: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Helvetica,Arial,sans-serif;
+        }
+        *{
+            transition: 3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>En attente...</h1>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/wplay_script.js"></script>
+    <script>
+        $(function () {
+            var body = $(document.body),
+            els = $("h1"),
+            curColor = [255, 255, 255],
+            chcolor = function () {
+                for (var i = 0; i < 3; i++) {
+                    curColor[i] = Math.floor(Math.random() * 256);
+                }
+                body.css("background", "rgb(" + curColor[0] + "," + curColor[1] + "," + curColor[2] + ")");
+                els.css("color","rgb("+(255-curColor[0])+","+(255-curColor[1])+","+(255-curColor[2])+")");
+            };
+            chcolor()
+            setInterval(chcolor, 3000);
+        });
+
+    </script>
+</body>
+</html>

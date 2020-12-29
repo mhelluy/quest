@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attente des joueurs</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow:hidden;
+            background: rgb(255, 255, 255);
+            color: rgb(255, 208, 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Helvetica,Arial,sans-serif;
+        }
+        *{
+            transition: 2s;
+            text-align: center;
+        }
+        ul{
+            list-style-type: none;
+            font-size: 3em;
+        }
+        hr{
+            width: 90%;
+            border-color: white;
+        }
+        #nb_players{
+            opacity: 0.9;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        #pnb{
+            position: absolute;
+            bottom: 10px;
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body>
+    <h1>En attente de joueurs</h1>
+    <hr/>
+    <h2>Joueurs présents :</h2>
+    <ul>
+        <?listNames>
+    </ul>
+    <p id="pnb">Nombre de joueurs : <span id="nb_players">0</span></p>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/wd_script.js"></script>
+    <script>
+        $(function () {
+            var body = $(document.body),
+            els = $("*"),
+            hr = $("hr"),
+            nbpl = $("#nb_players"),
+            curColor = [255, 255],
+            chcolor = function () {
+                for (var i = 0; i < 2; i++) {
+                    curColor[i] = Math.floor(Math.random() * 256);
+                }
+                var opposite = "rgb("+(255-curColor[0])+",0,"+(255-curColor[1])+")",
+                    newcolor = "rgb(" + curColor[0] + ",255," + curColor[1] + ")";
+                body.css("background", newcolor);
+                els.css("color",opposite);
+                hr.css("border-color",opposite);
+                nbpl.css("background",opposite);
+                nbpl.css("color",newcolor);
+            };
+            chcolor()
+            setInterval(chcolor, 500);
+        });
+
+    </script>
+</body>
+</html>

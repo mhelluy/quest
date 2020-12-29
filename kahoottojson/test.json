@@ -1,0 +1,129 @@
+[
+    {
+          "question": "Quelle est la capitale du Canada ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/0e413762-592a-42eb-9150-10f9dac942ae\"/>",
+          "choices": [
+                "Montréal",
+                "Toronto",
+                "Ottawa",
+                "Vancouver"
+          ],
+          "answer": 2,
+          "time": 20
+    },
+    {
+          "question": "Quelle est la capitale de l'Australie ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/3407a3f6-ce96-4b14-9283-10006c12ed32\"/>",
+          "choices": [
+                "Canberra",
+                "Melbourne",
+                "Auckland",
+                "Sydney"
+          ],
+          "answer": 0,
+          "time": 20
+    },
+    {
+          "question": "Sur quel continent se situe la Tanzanie ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/bf46dc18-1ca6-43c7-a2d8-f2681c00bc25\"/>",
+          "choices": [
+                "Amérique",
+                "Asie",
+                "Afrique",
+                "Océanie"
+          ],
+          "answer": 2,
+          "time": 20
+    },
+    {
+          "question": "Quel est le plus grand pays de la péninsule arabique ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/860b308b-9f9a-4cb3-9f84-0b8e51206aec\"/>",
+          "choices": [
+                "l'Arabie Saoudite",
+                "le Yémen",
+                "la Russie",
+                "la Croatie"
+          ],
+          "answer": 0,
+          "time": 20
+    },
+    {
+          "question": "Quelle est la capitale de la Corée du Nord ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/aa294c7d-84ea-4f7e-a373-e7c08f5c6ef0\"/>",
+          "choices": [
+                "Hamhung",
+                "Pyongyang",
+                "Istanbul",
+                "Sinŭiju"
+          ],
+          "answer": 1,
+          "time": 20
+    },
+    {
+          "question": "Dans quel pays se trouve la ville de Séoul ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/a356ee30-fd9b-493d-873a-16ddeac32d08\"/>",
+          "choices": [
+                "la Corée du Sud",
+                "la Syrie",
+                "le Japon",
+                "la Turquie"
+          ],
+          "answer": 0,
+          "time": 20
+    },
+    {
+          "question": "Quel est le nom complet du Bangladesh ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/fc6b203d-cc9d-43be-8643-c915b5b71dd0\"/>",
+          "choices": [
+                "République du Bangladesh",
+                "République démocratique Bangladaise",
+                "République démocratique Sud-Asiatique du Bangladesh",
+                "République populaire du Bangladesh"
+          ],
+          "answer": 3,
+          "time": 20
+    },
+    {
+          "question": "Comment appelle-t-on les habitants du Qatar ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/a43e8dcd-b510-4fd5-87de-594b5799d1a7\"/>",
+          "answer": 2,
+          "exact_answer": "Qataris",
+          "time": 20
+    },
+    {
+          "question": "Quel mer communique avec l'océan indien par le détroit de Bab-el-Mandeb ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/59ecedd0-7201-44de-8019-70579be1401d\"/>",
+          "choices": [
+                "la mer Noire",
+                "la mer de Chine",
+                "la mer Rouge",
+                "la mer Méditerranée"
+          ],
+          "answer": 2,
+          "time": 20
+    },
+    {
+          "question": "Quel pays a pour capitale Zagreb ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/7cc94102-6b2d-4678-9166-d7e1dbd8c8e5\"/>",
+          "choices": [
+                "la Serbie",
+                "la Croatie",
+                "l'Estonie",
+                "la Lettonie"
+          ],
+          "answer": 1,
+          "time": 20
+    },
+    {
+          "question": "<b>Dernière question : </b>Quel est le pays représenté par le drapeau sur l'image ?",
+          "compl": "<img src=\"https://images-cdn.kahoot.it/464060ff-da9e-4991-a9f2-988378e53177\"/>",
+          "choices": [
+                "la République démocratique du Congo (R.D.C.)",
+                "Madagascar",
+                "les Seychelles",
+                "l'Érythrée"
+          ],
+          "answer": 3,
+          "time": 30
+    }
+]

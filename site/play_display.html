@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest!</title>
+    <style>
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+        }
+
+        #compl {
+            /* position: absolute; */
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            height: 30%;
+            margin-bottom: 10px;
+        }
+
+        #compl img {
+            /* position: absolute; */
+            display: block;
+            height: 100%;
+            width: auto;
+        }
+
+        #answers {
+            /* position: absolute; */
+            width: 99%;
+            height: 49%;
+            bottom: 10px;
+            left: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #time {
+            background: rgb(172, 19, 172);
+            color: white;
+            position: absolute;
+            left: 30px;
+            top: 150px;
+            font-size: 2em;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .answer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 3em;
+        }
+
+        .answer:nth-child(n) {
+            background: red;
+            flex-basis: 50%;
+        }
+
+        .answer:nth-child(2n) {
+            background: blue;
+            flex-basis: 50%;
+        }
+
+        .answer:nth-child(3n) {
+            background: green;
+        }
+
+        .answer:nth-child(4n) {
+            background: orange;
+        }
+
+        #pcash {
+            font-weight: bold;
+            color: grey;
+            font-size: 4em;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <?question></h1>
+    <div id="compl"><?compl></div>
+    <div id="time"><?time></div>
+    <div id="answers"><?choices></div>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            setInterval(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/apps/pinfos",
+                    success: function (obj) {
+                        obj = JSON.parse(obj);
+                        if (obj.status == 2) {
+                            location.href = "/end";
+                        }
+                    }
+                });
+            }, 100);
+            setInterval(function () {
+                var dtime = $("#time"),
+                    curtime = parseInt(dtime.html());
+                dtime.html(curtime - 1);
+            }, 1000);
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Attente</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow:hidden;
+            background: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Helvetica,Arial,sans-serif;
+            text-align: center;
+        }
+        *{
+            transition: 3s;
+        }
+        #nb_players{
+            opacity: 0.9;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+        #pnb{
+            position: absolute;
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Veuillez patienter, le jeu va bientôt démarrer</h1>
+    <p>Regardez votre nom à l'écran !</p>
+    <p id="pnb"><span id="nb_players"><?nb_players></span> joueurs sont en jeu</p>
+    <?moderator code>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/w_script.js"></script>
+    <?moderator script>
+    <script>
+        $(function () {
+            var body = $(document.body),
+            els = $("*"),
+            nbpl = $("#nb_players"),
+            curColor = [255, 255],
+            chcolor = function () {
+                for (var i = 0; i < 2; i++) {
+                    curColor[i] = Math.floor(Math.random() * 256);
+                }
+                var opposite = "rgb("+(255-curColor[0])+",0,"+(255-curColor[1])+")",
+                    newcolor = "rgb(" + curColor[0] + ",255," + curColor[1] + ")";
+                body.css("background", newcolor);
+                els.css("color",opposite);
+                nbpl.css("background",opposite);
+                nbpl.css("color",newcolor);
+            };
+            chcolor()
+            setInterval(chcolor, 500);
+        });
+    </script>
+</body>
+</html>

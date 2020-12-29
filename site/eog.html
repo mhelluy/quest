@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest! End of game</title>
+    <style>
+        body {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        *{
+            transition: 3s;
+        }
+        #answspan{
+            opacity: 0.9;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 4px;
+
+        }
+        p{
+            font-size: xx-large;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>La partie est terminée</h1>
+    <p>Votre place :
+        <span id="answspan"><?place></span></p>
+    <script src="static/js/jquery.min.js"></script>
+        <script>
+            $(function () {
+                var body = $(document.body),
+                    els = $("p, h1"),
+                    frmansw = $("#answspan"),
+                    curColor = [255, 255],
+                    chcolor = function () {
+                        for (var i = 0; i < 2; i++) {
+                            curColor[i] = Math.floor(Math.random() * 256);
+                        }
+                        var opposite = "rgb(" + (255 - curColor[0]) + ",0," + (255 - curColor[1]) + ")",
+                            newcolor = "rgb(" + curColor[0] + ",255," + curColor[1] + ")";
+                        body.css("background", newcolor);
+                        els.css("color", opposite);
+                        frmansw.css("color", newcolor);
+                        frmansw.css("background", opposite);
+                    };
+                chcolor()
+                setInterval(chcolor, 500);
+            });
+
+        </script>
+</body>
+</html>

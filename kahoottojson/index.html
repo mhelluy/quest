@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Kahoot quiz</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow:hidden;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Convert Kahoot quiz to json to use with Quest!</h1>
+    <label for="ifile">Sélectionner le fichier HTML téléchargé depuis kahoot</label>
+    <input type="file" id="ifile"/>
+    <button id="bouton" style="display: none;">Lancer la conversion</button>
+    <div style="display:none;" id="output_html"></div>
+    <textarea style="width: 80%;height:70%;" id="output_json"></textarea>
+    <script src="jquery.js"></script>
+    <script src="converter.js"></script>
+</body>
+</html>

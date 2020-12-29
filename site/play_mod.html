@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest!</title>
+    <style>
+        body{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 99%;
+            height: 98%;
+            background: rgb(65, 255, 129);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        #stop{
+            height: 5em;
+            width: 6em;
+            background: red;
+            color: white;
+            font-weight: bold;
+            font-size: xx-large;
+        }
+        #stop:hover{
+            background: chocolate;
+        }
+        #stop:active{
+            outline: 2px blue solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Réponses en cours</h1>
+    <button id="stop">STOP</button>
+    <div class="modact"><?modact></div>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            setInterval(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/apps/pinfos",
+                    success: function (obj) {
+                        obj = JSON.parse(obj);
+                        if (obj.status == 2){
+                            location.href = "/end";
+                        }
+                    }
+                });
+            },100);
+            $("#stop").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/apps/mactions",
+                    data: {
+                        "setvar": JSON.stringify({
+                            "status": 2
+                        })
+                    }
+                })
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

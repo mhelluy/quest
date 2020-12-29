@@ -1,0 +1,78 @@
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgb(56, 255, 195);
+    font-family: Helvetica,Arial,sans-serif;
+    overflow:hidden;
+}
+h1{
+    text-align: center;
+    font-size: 4em;
+}
+#compl{
+    /* position: absolute; */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 35%;
+    margin-bottom: 10px;
+}
+#compl img{
+    /* position: absolute; */
+    display: block;
+    height: auto;
+    width: 35%;
+}
+#answers{
+    /* position: absolute; */
+    width: 99%;
+    height: 49%;
+    bottom: 10px;
+    font-size: 3em;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+#time{
+    background: rgb(172, 19, 172);
+    color: white;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-size: 2em;
+    padding: 20px;
+    border-radius: 5px;
+}
+.answer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: large;
+}
+
+.answer:nth-child(n){
+    background: red;
+    flex-basis: 50%;
+}
+.answer:nth-child(2n){
+    background: blue;
+    flex-basis: 50%;
+}
+.answer:nth-child(3n){
+    background: green;
+}
+.answer:nth-child(4n){
+    background: rgb(231, 104, 0);
+}
+#pcash{
+    font-weight: bold;
+    color: grey;
+    font-size: xx-large;
+    margin: auto;
+}

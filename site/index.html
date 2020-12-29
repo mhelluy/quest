@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: rgb(255, 255, 255);
+            display: flex;
+            overflow:hidden;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Helvetica,Arial,sans-serif;
+        }
+        input{
+            height: 3em;
+            width: 200%;
+            text-align: center;
+            font-size: large;
+        }
+        input[type="submit"]{
+            margin-top: 1em;
+            color: black;
+            margin-bottom: auto;
+        }
+        h1 {
+            margin-bottom: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        *{
+            font-weight: bold;
+            transition: 3s;
+        }
+        @media (max-width: 640px) {
+            input{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Quest !</h1>
+    <form action="sessiondefine" method="post">
+        <input type="text" name="name" id="name" placeholder="Entrez votre pseudo" required/>
+        <input type="submit" value="OK!">
+    </form>
+    <div style="margin-top: auto;"></div>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var body = $(document.body),
+            els = $("h1"),
+            curColor = [255, 255, 255],
+            chcolor = function () {
+                for (var i = 0; i < 3; i++) {
+                    curColor[i] = Math.floor(Math.random() * 256);
+                }
+                body.css("background", "rgb(" + curColor[0] + "," + curColor[1] + "," + curColor[2] + ")");
+                els.css("color","rgb("+(255-curColor[0])+","+(255-curColor[1])+","+(255-curColor[2])+")");
+            };
+            chcolor()
+            setInterval(chcolor, 5000);
+        });
+
+    </script>
+</body>
+
+</html>

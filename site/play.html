@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play</title>
+    <style>
+        body{
+            background: rgb(93, 255, 193);
+        }
+        .answer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: large;
+        }
+
+        .answer:hover {
+            opacity: 0.8;
+        }
+
+        .answer:active {
+            background: grey;
+        }
+
+        .answer:nth-child(n) {
+            background: red;
+            flex-basis: 50%;
+        }
+
+        .answer:nth-child(2n) {
+            background: blue;
+            flex-basis: 50%;
+        }
+
+        .answer:nth-child(3n) {
+            background: green;
+        }
+
+        .answer:nth-child(4n) {
+            background: orange;
+        }
+
+        #answers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            color: rgb(0, 0, 0);
+            text-align: center;
+            transition: 3s;
+        }
+
+        #voide {
+            background: rgb(255, 255, 255);
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+            justify-content: center;
+            align-items: center;
+            transition: 3s;
+        }
+        #cashdiv{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #cashdiv input[type="text"]{
+            height: 5em;
+            font-size: x-large;
+            font-weight: bold;
+            text-align: center;
+        }
+        #cashdiv button{
+            margin-top: 10px;
+            height: 2em;
+            width: 3em;
+            font-weight: bold;
+            font-size: x-large;
+        }
+        *{
+            font-family: Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="voide" style="display: <?disp>">
+        <h1>Votre réponse a été enregistrée. En attente...</h1>
+    </div>
+    <div id="answers">
+        <?choices></div>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            setInterval(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/apps/pinfos",
+                    success: function (obj) {
+                        obj = JSON.parse(obj);
+                        console.log(obj);
+                        if (obj.status == 2) {
+                            console.log(obj.status);
+                            location.href = "/end";
+                        }
+                    }
+                });
+            }, 100);
+            function patienter() {
+                var voide = $("#voide");
+                $("#answers").html("");
+                voide.css("display", "flex");
+                var els = $("h1"),
+                    curColor = [255, 255, 255],
+                    chcolor = function () {
+                        for (var i = 0; i < 3; i++) {
+                            curColor[i] = Math.floor(Math.random() * 256);
+                        }
+                        voide.css("background", "rgb(" + curColor[0] + "," + curColor[1] + "," + curColor[2] + ")");
+                        els.css("color", "rgb(" + (255 - curColor[0]) + "," + (255 - curColor[1]) + "," + (255 - curColor[2]) + ")");
+                    };
+                chcolor()
+                setInterval(chcolor, 5000);
+            }
+            var bansw = $(".answer");
+            for (var i = 0, c = bansw.length; i < c; ++i) {
+                (function (i) {
+                    $(bansw[i]).click(function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "/apps/pinfos",
+                            data: {
+                                truemethod: "POST",
+                                answ: i
+                            },
+                            success: patienter
+                        });
+                    });
+                })(i);
+
+            }
+            $("#bcash").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/apps/pinfos",
+                    data: {
+                        truemethod: "POST",
+                        answ: $("#cashansw").val()
+                    },
+                    success: patienter
+                });
+            });
+            $(document).keydown(function(e){
+                if (e.keyCode == 13){
+                    $("#bcash").trigger("click");
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

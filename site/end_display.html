@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest!</title>
+    <style>
+        body{
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+            flex-direction: column;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 2.5em;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        td{
+            padding: 3px;
+            box-shadow: grey 4px 4px 2px;
+            background: white;
+        }
+        table{
+            border-spacing: 3px;
+            max-height: 40%;
+            overflow: scroll;
+        }
+        .header{
+            font-weight: bold;
+            font-size: xx-large;
+        }
+        *{
+            transition: 3s;
+        }
+        #answer{
+            margin-bottom: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #expli{
+            font-size: 1.3em;
+            display: block;
+            flex: 0.5;
+        }
+        #answspan{
+            opacity: 0.9;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 4px;
+            line-height: 2em;
+        }
+        img{
+            max-width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="answer"><?answer></div>
+    <table>
+        <tr class="header"><td>Place</td><td>Pseudo</td><td>Score</td></tr>
+        <?tablecontent>
+    </table>
+    <div style="margin-top:auto;"></div>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            showansw = <?showansw>;
+            setInterval(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/apps/einfos",
+                    success: function (obj) {
+                        obj = JSON.parse(obj);
+                        if (obj.show_answer != showansw || obj.nreload){
+                            location.reload();
+                        }
+                        if (obj.status == 1){
+                            location.href = "/play";
+                        } else if (obj.status == 3){
+                            location.href = "eog";
+                        }
+                    }
+                });
+            },1000);
+        });
+    </script>
+    <script>
+        $(function () {
+            var body = $(document.body),
+            els = $("p"),
+            frmansw = $("#answspan"),
+            curColor = [255, 255],
+            chcolor = function () {
+                for (var i = 0; i < 2; i++) {
+                    curColor[i] = Math.floor(Math.random() * 256);
+                }
+                var opposite = "rgb("+(255-curColor[0])+",0,"+(255-curColor[1])+")",
+                    newcolor = "rgb(" + curColor[0] + ",255," + curColor[1] + ")";
+                body.css("background", newcolor);
+                els.css("color",opposite);
+                frmansw.css("color",newcolor);
+                frmansw.css("background",opposite);
+            };
+            chcolor()
+            setInterval(chcolor, 500);
+        });
+
+    </script>
+</body>
+</html>
