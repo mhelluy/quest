@@ -96,7 +96,7 @@ class Site:
                             for choic in quest().choices:
                                 answercli += "<div class='answer'></div>"
                         else:
-                            answercli = "<div id='cashdiv'><input type='text' id='cashansw' placeholder='Écrivez la réponse'/><button id='bcash'>OK!</button></div>"
+                            answercli = "<div id='cashdiv'><input type='text' id='cashansw' placeholder='Écrivez la réponse' autocomplete=\"off\"/><button id='bcash'>OK!</button></div>"
                         disp = "none"
                     else:
                         disp = "flex"
